@@ -9,13 +9,13 @@ import { User } from '../../user';
   styleUrls: ['./user-profile.component.scss']
 })
 export class UserProfileComponent {
-  currentUser: User = {};
+  currentUser: User = new User();
 
   constructor(public authService: AuthService, private actRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    let id = this.actRoute.snapshot.paramMap.get('id');
-    this.authService.getUserProfile(id).subscribe((res) => {
+    console.log(this.authService.currentUser.id);
+    this.authService.getUserProfile(this.authService.getUserId()).subscribe((res) => {
       this.currentUser = res;
     });
   }

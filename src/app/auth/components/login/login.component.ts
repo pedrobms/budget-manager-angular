@@ -10,6 +10,7 @@ import { AuthService } from '../../auth.service';
 })
 export class LoginComponent {
   loginForm: FormGroup = new FormGroup({});
+  error: string = '';
 
   constructor(public formBuilder: FormBuilder, public authService: AuthService, public router: Router) { }
 
@@ -21,7 +22,17 @@ export class LoginComponent {
   }
 
   login() {
-    this.authService.login(this.loginForm.value);
+    this.authService.login(this.loginForm.value).subscribe({
+      next: (res: any) => {
+        localStorage.setItem('token', res.token);
+        this.authService.getUserProfile(res.id).subscribe((res) => {
+          this.authService.currentUser = res;
+          this.router.navigate(['/profile']);
+        });
+      },
+      error: (err) => {
+        this.error = err.error;
+      }
+    })
   }
-
 }
