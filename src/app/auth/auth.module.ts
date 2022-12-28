@@ -4,18 +4,18 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthConfigInterceptor } from './authconfig.interceptor';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { AuthRoutingModule } from './auth-routing.module';
 
 @NgModule({
   declarations: [
     LoginComponent,
-    RegisterComponent,
-    UserProfileComponent
+    RegisterComponent
   ],
   imports: [
     CommonModule,
+    AuthRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
@@ -26,8 +26,7 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     LoginComponent,
-    RegisterComponent,
-    UserProfileComponent
+    RegisterComponent
   ]
 })
 export class AuthModule { }

@@ -10,6 +10,7 @@ import { AuthService } from '../../auth.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({});
+  error: string = '';
 
   constructor(public formBuilder: FormBuilder, public authService: AuthService, public router: Router) { }
 
@@ -22,10 +23,12 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    this.authService.register(this.registerForm.value).subscribe((res) => {
-      if (res) {
-        this.registerForm.reset();
-        this.router.navigate(['login']);
+    this.authService.register(this.registerForm.value).subscribe({
+      next: (res: any) => {
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        this.error = err.error;
       }
     });
   }

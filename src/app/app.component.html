@@ -1,15 +1,3 @@
-<!-- <div
-  class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm sticky-top" *ngIf="this.authService.isLoggedIn">
-  <h5 class="my-0 mr-md-auto font-weight-normal">Budget Manager</h5>
-  <nav class="my-2 my-md-0 mr-md-3">
-    <a *ngIf="this.authService.isLoggedIn" class="p-2 text-dark">User Profile</a>
-    <a *ngIf="!this.authService.isLoggedIn" class="p-2 text-dark" routerLinkActive="active" routerLink="/login">Login</a>
-  </nav>
-  <a *ngIf="!this.authService.isLoggedIn" class="btn btn-outline-primary" routerLinkActive="active"
-    routerLinkActive="active" routerLink="/register">Register</a>
-  <button (click)="logout()" *ngIf="this.authService.isLoggedIn" type="button" class="btn btn-danger">Logout</button>
-</div> -->
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" *ngIf="this.authService.isLoggedIn">
   <a class="navbar-brand">Budget Manager</a>
   <button class="navbar-toggler" data-target="#user-nav" data-toggle="collapse" aria-controls="user-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,10 +6,15 @@
   <div id="user-nav" class="collapse navbar-collapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="profile">Perfil</a>
+        <a class="nav-link" routerLink="home" routerLinkActive="active">Inicio</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="profile" routerLinkActive="active">Perfil</a>
       </li>
     </ul>
     <button (click)="logout()" type="button" class="btn btn-sm btn-danger me-auto mx-2">Logout</button>
   </div>
 </nav>
-<router-outlet></router-outlet>
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh">
+  <router-outlet></router-outlet>
+</div>
