@@ -14,7 +14,7 @@ export class HomeComponent {
   constructor(private userService: UserService, private authService: AuthService) { }
 
   ngOnInit() {
-    this.userService.getUserData(this.authService.currentUser.id).subscribe({
+    this.userService.getUserData(this.authService.getUserId()).subscribe({
       next: (res) => {
         this.currentUser = res;
       }
