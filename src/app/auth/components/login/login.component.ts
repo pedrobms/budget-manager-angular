@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/user/user.service';
 import { AuthService } from '../../auth.service';
 
 @Component({
@@ -16,7 +15,6 @@ export class LoginComponent {
   constructor(
     public formBuilder: FormBuilder,
     public authService: AuthService,
-    public userService: UserService,
     public router: Router,
   ) { }
 
@@ -35,10 +33,8 @@ export class LoginComponent {
     this.authService.login(this.loginForm.value).subscribe({
       next: (res: any) => {
         localStorage.setItem('token', res.token);
-        this.userService.getUserData(res.id).subscribe((res) => {
-          this.authService.currentUser = res;
-          this.router.navigate(['/home']);
-        });
+        this.authService.currentUser = res;
+        this.router.navigate(['/home']);
       },
       error: (err) => {
         this.error = err.error;

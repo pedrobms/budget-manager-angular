@@ -15,11 +15,15 @@ export class RegisterComponent implements OnInit {
   constructor(public formBuilder: FormBuilder, public authService: AuthService, public router: Router) { }
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
-      email: [''],
-      password: [''],
-      name: ['']
-    });
+    if (this.authService.isLoggedIn) {
+      this.router.navigate(['/home']);
+    } else {
+      this.registerForm = this.formBuilder.group({
+        email: [''],
+        password: [''],
+        name: ['']
+      });
+    }
   }
 
   register() {

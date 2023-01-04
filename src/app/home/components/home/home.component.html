@@ -2,4 +2,6 @@
   <div class="col-12">
     <h3>Bem vindo {{ currentUser.name }}</h3>
   </div>
+  <app-board-user *ngIf="currentUser.role == 'user'"></app-board-user>
+  <app-board-admin *ngIf="currentUser.role == 'admin'"></app-board-admin>
 </div>
