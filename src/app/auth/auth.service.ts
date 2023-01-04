@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
+import { environment } from 'src/env';
 import { User } from '../user/user';
 
-const API_URL = 'http://localhost:8080';
 const TOKEN_KEY = 'token';
 
 @Injectable({
@@ -18,12 +18,12 @@ export class AuthService {
   constructor(private http: HttpClient, public router: Router) { }
 
   register(user: User): Observable<User> {
-    const url = `${API_URL}/auth/register`;
+    const url = `${environment.api}/auth/register`;
     return this.http.post<User>(url, user);
   }
 
   login(user: User) {
-    return this.http.post<User>(`${API_URL}/auth/login`, user)
+    return this.http.post<User>(`${environment.api}/auth/login`, user)
   }
 
   logout() {
