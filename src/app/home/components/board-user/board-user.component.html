@@ -1,1 +1,131 @@
-<p>board-user works!</p>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header text-center">
+        <!-- show current month name and make first letter uppercase-->
+        <h5 class="card-title">{{ currentMonthName | uppercase }}</h5>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12 col-md-4">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title text-center">Balanço</h5>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-6">
+                    <h6 class="card-subtitle mb-2 text-muted">Total</h6>
+                    <p class="card-text">R$ {{ currentMonthBalance | number: '1.2-2' }}</p>
+                  </div>
+                  <div class="col-6">
+                    <h6 class="card-subtitle mb-2 text-muted">Transações</h6>
+                    <p class="card-text">0</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title text-center">Receita</h5>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-6">
+                    <h6 class="card-subtitle mb-2 text-muted">Total</h6>
+                    <p class="card-text">R$ {{ currentMonthIncome | number: '1.2-2' }}</p>
+                  </div>
+                  <div class="col-6">
+                    <h6 class="card-subtitle mb-2 text-muted">Transações</h6>
+                    <p class="card-text">0</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title text-center">Despesa</h5>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-6">
+                    <h6 class="card-subtitle mb-2 text-muted">Total</h6>
+                    <p class="card-text">R$ {{ currentMonthExpense | number: '1.2-2' }}</p>
+                  </div>
+                  <div class="col-6">
+                    <h6 class="card-subtitle mb-2 text-muted">Transações</h6>
+                    <p class="card-text">0</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <h3 class="mt-4">Últimas transações</h3>
+
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Data</th>
+          <th scope="col">Descrição</th>
+          <th scope="col">Valor</th>
+          <th scope="col">Tipo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>01/01/2021</td>
+          <td>Salário</td>
+          <td>R$ 1.000,00</td>
+          <td>Receita</td>
+        </tr>
+        <tr>
+          <td>01/01/2021</td>
+          <td>Salário</td>
+          <td>R$ 1.000,00</td>
+          <td>Receita</td>
+        </tr>
+        <tr>
+          <td>01/01/2021</td>
+          <td>Salário</td>
+          <td>R$ 1.000,00</td>
+          <td>Receita</td>
+        </tr>
+        <tr>
+          <td>01/01/2021</td>
+          <td>Salário</td>
+          <td>R$ 1.000,00</td>
+          <td>Receita</td>
+        </tr>
+        <tr>
+          <td>01/01/2021</td>
+          <td>Salário</td>
+          <td>R$ 1.000,00</td>
+          <td>Receita</td>
+        </tr>
+        <tr>
+          <td>01/01/2021</td>
+          <td>Salário</td>
+          <td>R$ 1.000,00</td>
+          <td>Receita</td>
+        </tr>
+        <tr>
+          <td>01/01/2021</td>
+          <td>Salário</td>
+          <td>R$ 1.000,00</td>
+          <td>Receita</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
