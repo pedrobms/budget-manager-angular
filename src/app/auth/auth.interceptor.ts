@@ -4,7 +4,7 @@ import { AuthService } from './auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable()
-export class AuthConfigInterceptor implements HttpInterceptor {
+export class AuthInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {

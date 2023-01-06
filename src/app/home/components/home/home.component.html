@@ -1,7 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+  <a class="navbar-brand">Budget Manager</a>
+  <button class="navbar-toggler" data-target="#user-nav" data-toggle="collapse" aria-controls="user-nav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div id="user-nav" class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="home" routerLinkActive="active">Inicio</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="profile" routerLinkActive="active">Perfil</a>
+      </li>
+    </ul>
+    <button (click)="logout()" type="button" class="btn btn-sm btn-danger me-auto mx-2">Logout</button>
+  </div>
+</nav>
 <div class="row">
   <div class="col-12">
     <h3>Bem vindo {{ currentUser.name }}</h3>
   </div>
-  <app-board-user *ngIf="currentUser.role == 'user'"></app-board-user>
-  <app-board-admin *ngIf="currentUser.role == 'admin'"></app-board-admin>
+  <router-outlet></router-outlet>
 </div>
