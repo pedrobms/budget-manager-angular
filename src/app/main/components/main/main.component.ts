@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
+import { ToastService } from 'src/app/shared/components/toast/toast.service';
 import { User } from 'src/app/user/user';
 import { UserService } from 'src/app/user/user.service';
 
@@ -11,7 +12,11 @@ import { UserService } from 'src/app/user/user.service';
 export class MainComponent {
   currentUser: User = new User();
 
-  constructor(private userService: UserService, private authService: AuthService) { }
+  constructor(
+    private userService: UserService,
+    private authService: AuthService,
+    private toastService: ToastService
+  ) { }
 
   ngOnInit() {
     this.userService.getUserData(this.authService.getUserId()).subscribe({
@@ -23,5 +28,6 @@ export class MainComponent {
 
   logout() {
     this.authService.logout();
+    this.toastService.show('Saiu com sucesso!', { classname: 'bg-success text-light', delay: 3000 })
   }
 }

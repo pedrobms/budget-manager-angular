@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { MainRoutingModule } from './main-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { MainComponent } from './components/main/main.component';
+import { UserModule } from '../user/user.module';
+import { TransactionModule } from '../transaction/transaction.module';
 
 
 @NgModule({
@@ -13,7 +15,9 @@ import { MainComponent } from './components/main/main.component';
   ],
   imports: [
     CommonModule,
-    MainRoutingModule
+    MainRoutingModule,
+    UserModule,
+    TransactionModule
   ]
 })
 export class MainModule { }

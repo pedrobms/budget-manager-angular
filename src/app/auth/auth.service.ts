@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
-import { environment } from 'src/env';
+import { environment } from 'src/enviorement/environment';
 import { User } from '../user/user';
 
 const TOKEN_KEY = 'token';
