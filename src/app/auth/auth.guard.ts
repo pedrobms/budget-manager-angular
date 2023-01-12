@@ -15,7 +15,6 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       if (!this.authService.isLoggedIn) {
-        window.alert("Accesso negado! Você deve estar logado para acessar essa página.");
         this.router.navigate(['login'])
       }
       return true;

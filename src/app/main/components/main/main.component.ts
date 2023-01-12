@@ -4,11 +4,11 @@ import { User } from 'src/app/user/user';
 import { UserService } from 'src/app/user/user.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss']
 })
-export class HomeComponent {
+export class MainComponent {
   currentUser: User = new User();
 
   constructor(private userService: UserService, private authService: AuthService) { }

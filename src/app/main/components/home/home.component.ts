@@ -3,11 +3,11 @@ import { BalanceService } from 'src/app/transaction/balance.service';
 import { TransactionType } from 'src/app/transaction/transaction-type';
 
 @Component({
-  selector: 'app-board-user',
-  templateUrl: './board-user.component.html',
-  styleUrls: ['./board-user.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class BoardUserComponent {
+export class HomeComponent {
   currentMonthName: string = new Date().toLocaleString('pt-br', { month: 'long' });
   currentMonthBalance: any;
   currentMonthIncome: any;

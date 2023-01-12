@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastService } from 'src/app/shared/components/toast/toast.service';
 import { AuthService } from '../../auth.service';
 
 @Component({
@@ -12,7 +13,12 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({});
   error: string = '';
 
-  constructor(public formBuilder: FormBuilder, public authService: AuthService, public router: Router) { }
+  constructor(
+    public formBuilder: FormBuilder,
+    public authService: AuthService,
+    public router: Router,
+    public toastService: ToastService
+  ) { }
 
   ngOnInit() {
     if (this.authService.isLoggedIn) {
@@ -29,10 +35,12 @@ export class RegisterComponent implements OnInit {
   register() {
     this.authService.register(this.registerForm.value).subscribe({
       next: (res: any) => {
+        this.toastService.show('Cadastro realizado com sucesso!', { classname: 'bg-success text-light', delay: 5000 });
         this.router.navigate(['/login']);
       },
       error: (err) => {
         this.error = err.error;
+        this.toastService.show(this.error, { classname: 'bg-danger text-light', delay: 5000 });
       }
     });
   }
