@@ -16,19 +16,22 @@ export class HomeComponent {
   constructor(private balanceService: BalanceService) { }
 
   ngOnInit(): void {
-    this.balanceService.getBalanceByMonth(new Date().getMonth() + 1).subscribe(
+    const startDate = new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString().split('T')[0];
+    const endDate = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).toISOString().split('T')[0];
+
+    this.balanceService.getBalanceBetweenDates(startDate, endDate).subscribe(
       data => {
         this.currentMonthBalance = data;
       }
     );
 
-    this.balanceService.getBalanceByType(TransactionType.INCOME).subscribe(
+    this.balanceService.getBalanceBetweenDatesByType(startDate, endDate, TransactionType.INCOME).subscribe(
       data => {
         this.currentMonthIncome = data;
       }
     );
 
-    this.balanceService.getBalanceByType(TransactionType.EXPENSE).subscribe(
+    this.balanceService.getBalanceBetweenDatesByType(startDate, endDate, TransactionType.EXPENSE).subscribe(
       data => {
         this.currentMonthExpense = data;
       }

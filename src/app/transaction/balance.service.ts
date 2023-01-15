@@ -12,21 +12,21 @@ export class BalanceService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-  getBalanceByMonth(month: number): Observable<any> {
-    const url = `${environment.api}/users/${this.authService.getUserId()}/balance/month/${month}`;
+  getBalanceBetweenDates(startDate: String, endDate: String): Observable<any> {
+    const url = `${environment.api}/users/${this.authService.getUserId()}/balance/find?startDate=${startDate}&endDate=${endDate}`;
     return this.http.get(url).pipe(
-      map((res) => {
+      (res) => {
         return res || 0
-      })
+      }
     );
   }
 
-  getBalanceByType(type: TransactionType): Observable<any> {
-    const url = `${environment.api}/users/${this.authService.getUserId()}/balance/${type}`;
+  getBalanceBetweenDatesByType(startDate: String, endDate: String, type: TransactionType): Observable<any> {
+    const url = `${environment.api}/users/${this.authService.getUserId()}/balance/find?type=${type}&startDate=${startDate}&endDate=${endDate}`;
     return this.http.get(url).pipe(
-      map((res) => {
+      (res) => {
         return res || 0
-      })
+      }
     );
   }
 }
