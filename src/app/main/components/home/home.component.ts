@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { BalanceService } from 'src/app/transaction/balance.service';
-import { TransactionType } from 'src/app/transaction/transaction-type';
+import { BalanceService } from 'src/app/main/transaction/balance.service';
+import { TransactionType } from 'src/app/main/transaction/transaction-type';
 
 @Component({
   selector: 'app-home',

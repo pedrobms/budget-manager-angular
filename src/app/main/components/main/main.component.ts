@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { ToastService } from 'src/app/shared/components/toast/toast.service';
-import { User } from 'src/app/user/user';
-import { UserService } from 'src/app/user/user.service';
+import { User } from 'src/app/main/user/user';
+import { UserService } from 'src/app/main/user/user.service';
 
 @Component({
   selector: 'app-main',

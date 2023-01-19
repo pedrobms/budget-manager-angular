@@ -12,7 +12,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getUserData(id: any): Observable<User> {
+  getUserData(id: number): Observable<User> {
     const url = `${environment.api}/users/${id}`;
     return this.http.get(url).pipe(
       map((res) => {

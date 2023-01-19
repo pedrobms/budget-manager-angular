@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Observable } from 'rxjs';
 import { environment } from 'src/enviorement/environment';
-import { User } from '../user/user';
+import { User } from '../main/user/user';
 
 const TOKEN_KEY = 'token';
 

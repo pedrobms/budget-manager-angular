@@ -4,5 +4,4 @@ export class User {
   email?: string;
   createdAt?: Date;
   role?: string;
-  token?: string;
 }

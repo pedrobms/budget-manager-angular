@@ -1,0 +1,22 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Descrição</th>
+      <th>Valor</th>
+      <th>Categoria</th>
+      <th>Ação</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let transaction of transactions" [ngClass]="getClassnameByType(transaction)">
+      <td>{{ transaction.createdAt | date: 'medium' }}</td>
+      <td>{{ transaction.description }}</td>
+      <td>R$ {{ transaction.value }}</td>
+      <td>{{ transaction.category.name }}</td>
+      <td>
+        <a href="/{{ transaction.id }}" class="btn btn-sm btn-primary">Detalhes</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
