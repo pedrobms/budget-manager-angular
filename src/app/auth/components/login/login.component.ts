@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastService } from 'src/app/shared/components/toast/toast.service';
 import { AuthService } from '../../auth.service';
+import { FormError } from '../../form-error';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,8 @@ import { AuthService } from '../../auth.service';
 })
 export class LoginComponent {
   loginForm: FormGroup = new FormGroup({});
+  formErrors: FormError[] = [];
+  requestError: string = '';
 
   constructor(
     public formBuilder: FormBuilder,
@@ -24,8 +27,8 @@ export class LoginComponent {
       this.router.navigate(['/main']);
     } else {
       this.loginForm = this.formBuilder.group({
-        email: [''],
-        password: ['']
+        email: ['', Validators.required],
+        password: ['', Validators.required]
       });
     }
   }
@@ -38,7 +41,15 @@ export class LoginComponent {
         this.router.navigate(['/main']);
       },
       error: (err) => {
-        this.toastService.show(err.error, { classname: 'bg-danger text-light', delay: 5000 });
+        if (Array.isArray(err.error)) {
+          this.formErrors = err.error;
+          this.formErrors.forEach((error: FormError) => {
+            this.toastService.show(`${error.field}: ${error.error}`, { classname: 'bg-danger text-light', delay: 5000 });
+          });
+        } else {
+          this.requestError = err.error;
+          this.toastService.show(`${this.requestError}`, { classname: 'bg-danger text-light', delay: 5000 });
+        }
       }
     })
   }

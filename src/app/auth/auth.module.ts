@@ -7,6 +7,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthRoutingModule } from './auth-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AuthRoutingModule } from './auth-routing.module';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    SharedModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

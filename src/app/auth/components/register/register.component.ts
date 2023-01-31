@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastService } from 'src/app/shared/components/toast/toast.service';
 import { AuthService } from '../../auth.service';
+import { FormError } from '../../form-error';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,8 @@ import { AuthService } from '../../auth.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({});
-  error: string = '';
+  formErrors: FormError[] = [];
+  requestError: string = '';
 
   constructor(
     public formBuilder: FormBuilder,
@@ -25,22 +27,29 @@ export class RegisterComponent implements OnInit {
       this.router.navigate(['/home']);
     } else {
       this.registerForm = this.formBuilder.group({
-        email: [''],
-        password: [''],
-        name: ['']
+        email: ['', Validators.required],
+        password: ['', Validators.required],
+        name: ['', Validators.required]
       });
     }
   }
 
   register() {
     this.authService.register(this.registerForm.value).subscribe({
-      next: (res: any) => {
+      next: () => {
         this.toastService.show('Cadastro realizado com sucesso!', { classname: 'bg-success text-light', delay: 5000 });
         this.router.navigate(['/login']);
       },
       error: (err) => {
-        this.error = err.error;
-        this.toastService.show(this.error, { classname: 'bg-danger text-light', delay: 5000 });
+        if (Array.isArray(err.error)) {
+          this.formErrors = err.error;
+          this.formErrors.forEach((error: FormError) => {
+            this.toastService.show(`${error.field}: ${error.error}`, { classname: 'bg-danger text-light', delay: 5000 });
+          });
+        } else {
+          this.requestError = err.error;
+          this.toastService.show(`${this.requestError}`, { classname: 'bg-danger text-light', delay: 5000 });
+        }
       }
     });
   }
