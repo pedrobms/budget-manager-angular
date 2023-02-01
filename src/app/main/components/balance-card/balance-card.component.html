@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title text-center">{{ title }}</h5>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-6">
+        <h6 class="card-subtitle mb-2 text-muted">Total</h6>
+        <p class="card-text">R$ {{ value | number: '1.2-2' }}</p>
+      </div>
+      <div class="col-6" *ngIf="count">
+        <h6 class="card-subtitle mb-2 text-muted">Transações</h6>
+        <p class="card-text">{{ count }}</p>
+      </div>
+    </div>
+  </div>
+</div>
