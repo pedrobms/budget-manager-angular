@@ -7,6 +7,8 @@ import { MainComponent } from './components/main/main.component';
 import { UserModule } from './user/user.module';
 import { TransactionModule } from './transaction/transaction.module';
 import { BalanceCardComponent } from './components/balance-card/balance-card.component';
+import { FormsModule } from '@angular/forms';
+import { CategoryModule } from './category/category.module';
 
 
 @NgModule({
@@ -19,7 +21,8 @@ import { BalanceCardComponent } from './components/balance-card/balance-card.com
     CommonModule,
     MainRoutingModule,
     UserModule,
-    TransactionModule
+    TransactionModule,
+    CategoryModule
   ]
 })
 export class MainModule { }

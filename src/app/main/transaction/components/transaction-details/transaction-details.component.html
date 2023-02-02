@@ -1,0 +1,31 @@
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header text-center">
+          <h5>Detalhes</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6 col-12">
+              <h5>Valor</h5>
+              <div class="form-group">
+                <input type="text" [(ngModel)]="transaction.value" class="form-control">
+              </div>
+            </div>
+            <div class="col-md-6 col-12">
+              <h5>Descrição</h5>
+              <div class="form-group">
+                <input type="text" [(ngModel)]="transaction.description" class="form-control">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer text-center">
+          <button class="btn btn-primary me-2" (click)="edit()">Editar</button>
+          <button class="btn btn-danger ms-2" (click)="delete()">Excluir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

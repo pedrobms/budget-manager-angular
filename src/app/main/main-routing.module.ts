@@ -4,12 +4,18 @@ import { AuthGuard } from '../auth/auth.guard';
 import { UserDetailsComponent } from './user/components/user-details/user-details.component';
 import { HomeComponent } from './components/home/home.component';
 import { MainComponent } from './components/main/main.component';
+import { TransactionDetailsComponent } from './transaction/components/transaction-details/transaction-details.component';
+import { CategoryFormComponent } from './category/components/category-form/category-form.component';
+import { TransactionFormComponent } from './transaction/components/transaction-form/transaction-form.component';
 
 const routes: Routes = [
   { path: 'main', component: MainComponent, canActivate: [AuthGuard], children: [
     { path: '', redirectTo: 'home', pathMatch: 'full'},
     { path: 'home', component: HomeComponent },
-    { path: 'profile', component: UserDetailsComponent }
+    { path: 'profile', component: UserDetailsComponent },
+    { path: 'transaction/:id', component: TransactionDetailsComponent },
+    { path: 'transaction/add/:type', component: TransactionFormComponent},
+    { path: 'category/add', component: CategoryFormComponent },
   ] }
 ];
 

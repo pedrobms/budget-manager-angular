@@ -20,4 +20,13 @@ export class UserService {
       })
     );
   }
+
+  updateUser(user: User): Observable<User> {
+    const url = `${environment.api}/users/${user.id}`;
+    return this.http.put(url, user).pipe(
+      map((res) => {
+        return res || {}
+      })
+    );
+  }
 }

@@ -33,9 +33,15 @@
     </div>
   </div>
   <div class="row">
+    <div class="col-12 text-center">
+      <button [routerLink]="['/main/transaction/add', 'expense']" class="btn btn-danger m-2" *ngIf="hasExpenseCategories">Adicionar despesa</button>
+      <button [routerLink]="['/main/transaction/add', 'income']" class="btn btn-success m-2" *ngIf="hasIncomeCategories">Adicionar receita</button>
+      <button [routerLink]="['/main/category/add']" class="btn btn-info m-2">Adicionar categoria</button>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-12">
-      <h3 class="mt-4">Últimas transações</h3>
-
+      <h3 class="mt-4">Transações do mês</h3>
       <app-transaction-list
         [currentMonth]="currentMonth"
       ></app-transaction-list>
