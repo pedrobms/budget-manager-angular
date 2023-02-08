@@ -13,7 +13,6 @@ import { FormError } from '../../form-error';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({});
   formErrors: FormError[] = [];
-  requestError: string = '';
 
   constructor(
     public formBuilder: FormBuilder,
@@ -37,19 +36,11 @@ export class RegisterComponent implements OnInit {
   register() {
     this.authService.register(this.registerForm.value).subscribe({
       next: () => {
-        this.toastService.show('Cadastro realizado com sucesso!', { classname: 'bg-success text-light', delay: 5000 });
+        this.toastService.showSuccess('Cadastrado com sucesso!');
         this.router.navigate(['/login']);
       },
       error: (err) => {
-        if (Array.isArray(err.error)) {
-          this.formErrors = err.error;
-          this.formErrors.forEach((error: FormError) => {
-            this.toastService.show(`${error.field}: ${error.error}`, { classname: 'bg-danger text-light', delay: 5000 });
-          });
-        } else {
-          this.requestError = err.error;
-          this.toastService.show(`${this.requestError}`, { classname: 'bg-danger text-light', delay: 5000 });
-        }
+        this.toastService.showError(err.error);
       }
     });
   }

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/app/main/category/category';
 import { CategoryService } from 'src/app/main/category/category.service';
 import { ToastService } from 'src/app/shared/components/toast/toast.service';
+import { TransactionType } from '../../transaction-type';
 import { TransactionService } from '../../transaction.service';
 
 @Component({
@@ -14,53 +15,66 @@ import { TransactionService } from '../../transaction.service';
 export class TransactionFormComponent {
 
   transactionForm: FormGroup = new FormGroup({});
-  type: string = '';
   categories: Array<Category> = [];
+  hasExpenseCategories: boolean = false;
+  hasIncomeCategories: boolean = false;
+  addingExpense: boolean = false;
+  addingIncome: boolean = false;
 
   constructor(
     private toastService: ToastService,
     private transactionService: TransactionService,
     private categoryService: CategoryService,
-    private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private router: Router
   ) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
-      this.type = params['type'];
-    });
     this.transactionForm = this.formBuilder.group({
       description: [''],
-      type: [this.type],
+      type: [],
       category: [''],
       value: [''],
-      createdAt: [new Date().toISOString()]
+      createdAt: ['']
     });
-    this.loadCategories();
+    this.getHasCategories();
   }
 
-  loadCategories() {
-    this.categoryService.getCategories(this.type).subscribe({
+  loadCategories(type: string) {
+    this.addingExpense = type == TransactionType.EXPENSE ? true : this.addingExpense = true;
+    this.categoryService.getCategories(type).subscribe({
       next: (res: Array<Category>) => {
-        this.categories = res;
+        this.categories = res.filter((category) => category.active);
+        this.toastService.showInfo(`Cadastrando ${type === TransactionType.EXPENSE ? 'despesa' : 'receita'}`);
+        this.transactionForm.reset();
       },
       error: (err) => {
-        this.toastService.show(`${err.error}`, { classname: 'bg-danger text-light', delay: 5000 });
+        this.toastService.showError(err.error);
       }
     });
   }
 
   create() {
+    this.transactionForm.value.type = this.addingExpense ? TransactionType.EXPENSE : TransactionType.INCOME;
+    this.transactionForm.value.createdAt = new Date().toISOString();
     this.transactionService.addTransaction(this.transactionForm.value).subscribe({
       next: () => {
-        this.toastService.show('Transação adicionada', { classname: 'bg-success text-light', delay: 5000 });
+        this.toastService.showSuccess('Transação criada com sucesso!');
         this.router.navigate(['/main']);
       },
       error: (err) => {
-        this.toastService.show(`${err.error}`, { classname: 'bg-danger text-light', delay: 5000 });
+        this.toastService.showError(err.error);
       }
     });
+  }
+
+  getHasCategories(): void {
+    this.categoryService.getAllCategories().subscribe(
+      data => {
+        this.hasExpenseCategories = data.filter((category) => category.type === TransactionType.EXPENSE && category.active).length > 0;
+        this.hasIncomeCategories = data.filter((category) => category.type === TransactionType.INCOME && category.active).length > 0;
+      }
+    );
   }
 
 }

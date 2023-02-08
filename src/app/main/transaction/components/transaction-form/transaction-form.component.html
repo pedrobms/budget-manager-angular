@@ -1,25 +1,51 @@
 <div class="container mt-2">
+    <div class="row">
+      <div class="col-12">
+
+      </div>
+    </div>
+</div>
+
+<div class="container mt-2">
   <div class="row">
     <div class="col-12">
-      <form [formGroup]="transactionForm" (ngSubmit)="create()">
-        <div class="form-group">
-          <label for="description">Descrição</label>
-          <input type="text" class="form-control" formControlName="description" id="description" placeholder="Descrição">
+      <div class="card">
+        <div class="card-header text-center">
+          <h5>Adicionar Transação</h5>
         </div>
-        <div class="form-group">
-          <label for="description">Valor</label>
-          <input type="number" step="0.01" class="form-control" formControlName="value" id="value" placeholder="Valor">
-        </div>
-        <div class="form-group">
-          <label for="description">Categoria</label>
-          <select class="form-control" formControlName="category" id="category">
-            <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
-          </select>
-        </div>
-        <div class="text-center my-2">
-          <button type="submit" class="btn btn-success">Salvar</button>
-        </div>
+        <form [formGroup]="transactionForm" (ngSubmit)="create()">
+          <div class="card-body">
+            <div class="text-center">
+              <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                <input type="radio" class="btn-check" name="btnradio" id="btncheck1" autocomplete="off" [disabled]="!hasExpenseCategories">
+                <label class="btn btn-outline-dark" for="btncheck1" (click)="loadCategories('expense')">Despesa</label>
+
+                <input type="radio" class="btn-check" name="btnradio" id="btncheck2" autocomplete="off" [disabled]="!hasIncomeCategories">
+                <label class="btn btn-outline-dark" for="btncheck2" (click)="loadCategories('income')">Receita</label>
+              </div>
+            </div>
+            <div class="form-inputs" *ngIf="addingExpense || addingIncome">
+              <div class="form-group">
+                <label for="description">Descrição</label>
+                <input type="text" class="form-control" formControlName="description" id="description" placeholder="Descrição">
+              </div>
+              <div class="form-group">
+                <label for="description">Valor</label>
+                <input type="number" step="0.01" class="form-control" formControlName="value" id="value" placeholder="Valor">
+              </div>
+              <div class="form-group">
+                <label for="description">Categoria</label>
+                <select class="form-control" formControlName="category" id="category">
+                  <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer text-center">
+            <button type="submit" class="btn btn-success">Salvar</button>
+          </div>
       </form>
+      </div>
     </div>
   </div>
 </div>

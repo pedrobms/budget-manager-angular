@@ -29,11 +29,11 @@ export class UserDetailsComponent {
   edit() {
     this.userService.updateUser(this.currentUser).subscribe({
       next: () => {
-        this.toastService.show('Usuario atualizado', { classname: 'bg-success text-light', delay: 5000 });
+        this.toastService.showSuccess('Usuário atualizado com sucesso!');
         this.router.navigate(['/main']);
       },
       error: (err) => {
-        this.toastService.show(`${err.error}`, { classname: 'bg-danger text-light', delay: 5000 });
+        this.toastService.showError(err.error);
       }
     });
   }

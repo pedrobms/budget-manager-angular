@@ -17,8 +17,23 @@ export class CategoryService {
     return this.http.post(url, value);
   }
 
-  getCategories(type: string): Observable<any> {
+  updateCategory(value: Category) {
+    const url = `${environment.api}/users/${this.authService.getUserId()}/categories/${value.id}`;
+    return this.http.put(url, value);
+  }
+
+  getCategories(type: string): Observable<Array<Category>> {
     const url = `${environment.api}/users/${this.authService.getUserId()}/categories/find?type=${type}`;
-    return this.http.get(url);
+    return this.http.get<Array<Category>>(url);
+  }
+
+  getAllCategories(): Observable<Array<Category>> {
+    const url = `${environment.api}/users/${this.authService.getUserId()}/categories`;
+    return this.http.get<Array<Category>>(url);
+  }
+
+  getCategoryById(id: number): Observable<Category> {
+    const url = `${environment.api}/users/${this.authService.getUserId()}/categories/${id}`;
+    return this.http.get<Category>(url);
   }
 }

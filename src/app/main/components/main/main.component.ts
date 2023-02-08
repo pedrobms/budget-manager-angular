@@ -28,6 +28,6 @@ export class MainComponent {
 
   logout() {
     this.authService.logout();
-    this.toastService.show('Saiu com sucesso!', { classname: 'bg-success text-light', delay: 3000 })
+    this.toastService.showSuccess('Logout realizado com sucesso!');
   }
 }

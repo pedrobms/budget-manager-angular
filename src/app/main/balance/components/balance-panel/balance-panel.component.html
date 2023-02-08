@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-sm-12 col-md-4">
+    <app-balance-card
+      [title]="'Balanço'"
+      [value]="currentMonthBalance"
+    ></app-balance-card>
+  </div>
+  <div class="col-sm-12 col-md-4">
+    <app-balance-card
+      [title]="'Receita'"
+      [value]="currentMonthIncome"
+    ></app-balance-card>
+  </div>
+  <div class="col-sm-12 col-md-4">
+    <app-balance-card
+      [title]="'Despesa'"
+      [value]="currentMonthExpense"
+    ></app-balance-card>
+  </div>
+</div>

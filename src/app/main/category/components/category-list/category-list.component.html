@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h5 class="mt-4 text-center">Categorias</h5>
+      <div class="d-flex my-3 flex-row justify-content-center">
+        <button [routerLink]="['/main/category/add']" class="btn btn-sm btn-secondary me-1">Adicionar</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-secondary">
+          <thead>
+            <tr>
+              <th scope="col">Nome</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Ação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let category of categories" [ngClass]="category.active ? '' : 'text-decoration-line-through'">
+              <td>{{ category.name }}</td>
+              <td>{{ category.type == 'expense' ? 'Despesa' : 'Receita' }}</td>
+              <td>
+                <a [routerLink]="['/main/category', category.id]" class="btn btn-sm btn-primary">Editar</a>
+                <button class="btn btn-sm ms-1" (click)="changeActivation(category)" [ngClass]="category.active ? 'btn-danger' : 'btn-success'">
+                  {{ category.active ? 'Desativar' : 'Ativar' }}
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+    </div>
+  </div>
+</div>

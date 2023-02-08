@@ -6,23 +6,22 @@ import { HomeComponent } from './components/home/home.component';
 import { MainComponent } from './components/main/main.component';
 import { UserModule } from './user/user.module';
 import { TransactionModule } from './transaction/transaction.module';
-import { BalanceCardComponent } from './components/balance-card/balance-card.component';
-import { FormsModule } from '@angular/forms';
 import { CategoryModule } from './category/category.module';
+import { BalanceModule } from './balance/balance.module';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    MainComponent,
-    BalanceCardComponent
+    MainComponent
   ],
   imports: [
     CommonModule,
     MainRoutingModule,
     UserModule,
     TransactionModule,
-    CategoryModule
+    CategoryModule,
+    BalanceModule
   ]
 })
 export class MainModule { }

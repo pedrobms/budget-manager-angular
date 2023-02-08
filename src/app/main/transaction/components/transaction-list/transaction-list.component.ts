@@ -29,7 +29,7 @@ export class TransactionListComponent implements OnInit, OnChanges {
     );
   }
 
-  getCellColor(transaction: Transaction): string {
+  getRowColor(transaction: Transaction): string {
     return transaction.type == TransactionType.EXPENSE ? 'table-danger' : 'table-primary';
   }
 

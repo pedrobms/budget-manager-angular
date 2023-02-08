@@ -41,15 +41,8 @@ export class LoginComponent {
         this.router.navigate(['/main']);
       },
       error: (err) => {
-        if (Array.isArray(err.error)) {
-          this.formErrors = err.error;
-          this.formErrors.forEach((error: FormError) => {
-            this.toastService.show(`${error.field}: ${error.error}`, { classname: 'bg-danger text-light', delay: 5000 });
-          });
-        } else {
-          this.requestError = err.error;
-          this.toastService.show(`${this.requestError}`, { classname: 'bg-danger text-light', delay: 5000 });
-        }
+        this.requestError = err.error;
+        this.toastService.showError(err.error);
       }
     })
   }

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/enviorement/environment';
 import { AuthService } from '../../auth/auth.service';
-import { TransactionType } from './transaction-type';
+import { TransactionType } from '../transaction/transaction-type';
 
 @Injectable({
   providedIn: 'root'

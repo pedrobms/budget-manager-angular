@@ -2,41 +2,25 @@
   <div class="row">
     <div class="col-12">
       <div class="card">
-        <div class="card-header text-center">
-          <h5 class="card-title">{{ currentMonthName | uppercase }}</h5>
-          <button (click)="changeMonth('prev')" class="btn btn-sm btn-primary"><</button>
-          <button (click)="changeMonth('next')" class="btn btn-sm btn-primary">></button>
+        <div class="card-header">
+          <div class="d-flex flex-row justify-content-between">
+            <button (click)="changeMonth('prev')" class="btn btn-sm rounded-pill btn-outline-secondary"><</button>
+            <h5 class="card-title">{{ currentMonthName | uppercase }}</h5>
+            <button (click)="changeMonth('next')" class="btn btn-sm rounded-pill btn-outline-secondary">></button>
+          </div>
         </div>
         <div class="card-body">
-          <div class="row">
-            <div class="col-sm-12 col-md-4">
-              <app-balance-card
-                [title]="'Balanço'"
-                [value]="currentMonthBalance"
-              ></app-balance-card>
-            </div>
-            <div class="col-sm-12 col-md-4">
-              <app-balance-card
-                [title]="'Receita'"
-                [value]="currentMonthIncome"
-              ></app-balance-card>
-            </div>
-            <div class="col-sm-12 col-md-4">
-              <app-balance-card
-                [title]="'Despesa'"
-                [value]="currentMonthExpense"
-              ></app-balance-card>
-            </div>
-          </div>
+          <app-balance-panel
+            [currentMonth]="currentMonth"
+          ></app-balance-panel>
         </div>
       </div>
     </div>
   </div>
   <div class="row">
     <div class="col-12 text-center">
-      <button [routerLink]="['/main/transaction/add', 'expense']" class="btn btn-danger m-2" *ngIf="hasExpenseCategories">Adicionar despesa</button>
-      <button [routerLink]="['/main/transaction/add', 'income']" class="btn btn-success m-2" *ngIf="hasIncomeCategories">Adicionar receita</button>
-      <button [routerLink]="['/main/category/add']" class="btn btn-info m-2">Adicionar categoria</button>
+      <button [routerLink]="['/main/transaction/add']" class="btn btn-dark m-2" *ngIf="hasCategories">Adicionar Transação</button>
+      <button [routerLink]="['/main/category']" class="btn btn-dark m-2">Categorias</button>
     </div>
   </div>
   <div class="row">

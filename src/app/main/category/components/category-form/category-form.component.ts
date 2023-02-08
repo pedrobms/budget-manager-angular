@@ -29,12 +29,12 @@ export class CategoryFormComponent {
 
   create() {
     this.categoryService.addCategory(this.categoryForm.value).subscribe({
-      next: (res: any) => {
-        this.toastService.show('Categoria criada', { classname: 'bg-success text-light', delay: 5000 });
-        this.router.navigate(['/main']);
+      next: () => {
+        this.toastService.showSuccess('Categoria criada com sucesso!');
+        this.router.navigate(['/main/category']);
       },
       error: (err) => {
-        this.toastService.show(`${err.error}`, { classname: 'bg-danger text-light', delay: 5000 });
+        this.toastService.showError(err.error);
       }
     });
   }

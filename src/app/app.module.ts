@@ -7,6 +7,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { MainModule } from './main/main.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CategoryListComponent } from './main/category/components/category-list/category-list.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +22,8 @@ import { MainModule } from './main/main.module';
         NgbModule,
         MainModule,
         AuthModule,
-        SharedModule
+        SharedModule,
+        FontAwesomeModule
     ]
 })
 export class AppModule { }

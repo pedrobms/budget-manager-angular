@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let transaction of transactions" [ngClass]="getCellColor(transaction)">
+    <tr *ngFor="let transaction of transactions" [ngClass]="getRowColor(transaction)">
       <td>{{ transaction.createdAt | date: 'medium' }}</td>
       <td>{{ transaction.description }}</td>
       <td>R$ {{ transaction.value }}</td>
