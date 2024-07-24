@@ -20,8 +20,8 @@ export class CategoryListComponent implements OnInit {
 
   updateList(): void {
     this.categoryService.getAllCategories().subscribe(
-      data => {
-        this.categories = data.sort((a, b) => {
+      (data) => {
+        this.categories = data.content.sort((a, b) => {
           return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
         });;
       }

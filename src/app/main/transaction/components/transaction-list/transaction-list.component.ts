@@ -36,7 +36,7 @@ export class TransactionListComponent implements OnInit, OnChanges {
   updateList(startDate: string, endDate: string): void {
     this.transactionService.getTransactionsBetweenDates(startDate, endDate).subscribe(
       data => {
-        this.transactions = data;
+        this.transactions = data.content;
         console.log(data);
       }
     );

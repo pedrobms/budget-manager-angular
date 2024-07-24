@@ -11,7 +11,7 @@ import { CategoryListComponent } from './category/components/category-list/categ
 import { CategoryDetailsComponent } from './category/components/category-details/category-details.component';
 
 const routes: Routes = [
-  { path: 'main', component: MainComponent, canActivate: [AuthGuard], children: [
+  { path: '', component: MainComponent, canActivate: [AuthGuard], children: [
     { path: '', redirectTo: 'home', pathMatch: 'full'},
     { path: 'home', component: HomeComponent },
     { path: 'profile', component: UserDetailsComponent },

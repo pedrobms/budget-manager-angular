@@ -6,6 +6,7 @@ import { CategoryService } from 'src/app/main/category/category.service';
 import { ToastService } from 'src/app/shared/components/toast/toast.service';
 import { TransactionType } from '../../transaction-type';
 import { TransactionService } from '../../transaction.service';
+import { Page } from 'src/app/shared/models/page.model';
 
 @Component({
   selector: 'app-transaction-form',
@@ -43,8 +44,8 @@ export class TransactionFormComponent {
   loadCategories(type: string) {
     this.addingExpense = type == TransactionType.EXPENSE ? true : this.addingExpense = true;
     this.categoryService.getCategories(type).subscribe({
-      next: (res: Array<Category>) => {
-        this.categories = res.filter((category) => category.active);
+      next: (res: Page<Category>) => {
+        this.categories = res.content.filter((category) => category.active);
         this.toastService.showInfo(`Cadastrando ${type === TransactionType.EXPENSE ? 'despesa' : 'receita'}`);
         this.transactionForm.reset();
       },
@@ -60,7 +61,7 @@ export class TransactionFormComponent {
     this.transactionService.addTransaction(this.transactionForm.value).subscribe({
       next: () => {
         this.toastService.showSuccess('Transação criada com sucesso!');
-        this.router.navigate(['/main']);
+        this.router.navigate(['/']);
       },
       error: (err) => {
         this.toastService.showError(err.error);
@@ -71,8 +72,11 @@ export class TransactionFormComponent {
   getHasCategories(): void {
     this.categoryService.getAllCategories().subscribe(
       data => {
-        this.hasExpenseCategories = data.filter((category) => category.type === TransactionType.EXPENSE && category.active).length > 0;
-        this.hasIncomeCategories = data.filter((category) => category.type === TransactionType.INCOME && category.active).length > 0;
+        console.log(data)
+        this.hasExpenseCategories = data.content.filter((category) => category.transactionType == TransactionType.EXPENSE && category.active).length > 0;
+        console.log(data.content.filter((category) => category.transactionType == TransactionType.INCOME && category.active).length > 0);
+        this.hasIncomeCategories = data.content.filter((category) => category.transactionType == TransactionType.INCOME && category.active).length > 0;
+        console.log(this.hasIncomeCategories);
       }
     );
   }

@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   getHasCategories(): void {
     this.categoryService.getAllCategories().subscribe(
       data => {
-        this.hasCategories = data.length > 0;
+        this.hasCategories = data.content.length > 0;
       }
     );
   }

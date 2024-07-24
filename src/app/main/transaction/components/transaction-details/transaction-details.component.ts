@@ -13,7 +13,7 @@ import { TransactionService } from '../../transaction.service';
 })
 export class TransactionDetailsComponent {
   transactionId: number = 0;
-  transaction: Transaction = new Transaction(0, '', 0, new Category(0, '', TransactionType.EXPENSE, new Date(), true), TransactionType.EXPENSE, new Date());
+  transaction: Transaction = new Transaction(0, '', 0, new Category(0, '', TransactionType.EXPENSE, new Date(), true), TransactionType.EXPENSE, new Date(), "");
 
   constructor(
     private toastService: ToastService,
@@ -44,7 +44,7 @@ export class TransactionDetailsComponent {
     this.transactionService.editTransaction(this.transaction).subscribe({
       next: () => {
         this.toastService.showSuccess('Transação editada com sucesso!');
-        this.router.navigate(['/main']);
+        this.router.navigate(['/']);
       },
       error: (err) => {
         this.toastService.showError(err.error);
@@ -56,7 +56,7 @@ export class TransactionDetailsComponent {
     this.transactionService.deleteTransaction(this.transaction.id).subscribe({
       next: () => {
         this.toastService.showSuccess('Transação excluída com sucesso!');
-        this.router.navigate(['/main']);
+        this.router.navigate(['/']);
       },
       error: (err) => {
         this.toastService.showError(err.error);

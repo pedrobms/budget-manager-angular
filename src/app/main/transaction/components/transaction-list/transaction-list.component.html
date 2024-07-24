@@ -13,9 +13,9 @@
       <td>{{ transaction.createdAt | date: 'medium' }}</td>
       <td>{{ transaction.description }}</td>
       <td>R$ {{ transaction.value }}</td>
-      <td>{{ transaction.category.name }}</td>
+      <td>{{ transaction.categoryName }}</td>
       <td>
-        <a [routerLink]="['/main/transaction', transaction.id]" class="btn btn-sm btn-primary">Detalhes</a>
+        <a [routerLink]="['/transaction', transaction.id]" class="btn btn-sm btn-primary">Detalhes</a>
       </td>
     </tr>
   </tbody>

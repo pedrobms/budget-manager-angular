@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { environment } from 'src/enviorement/environment';
 import { Category } from './category';
+import { Page } from 'src/app/shared/models/page.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,14 +23,14 @@ export class CategoryService {
     return this.http.put(url, value);
   }
 
-  getCategories(type: string): Observable<Array<Category>> {
+  getCategories(type: string): Observable<Page<Category>> {
     const url = `${environment.api}/users/${this.authService.getUserId()}/categories/find?type=${type}`;
-    return this.http.get<Array<Category>>(url);
+    return this.http.get<Page<Category>>(url);
   }
 
-  getAllCategories(): Observable<Array<Category>> {
+  getAllCategories(): Observable<Page<Category>> {
     const url = `${environment.api}/users/${this.authService.getUserId()}/categories`;
-    return this.http.get<Array<Category>>(url);
+    return this.http.get<Page<Category>>(url);
   }
 
   getCategoryById(id: number): Observable<Category> {

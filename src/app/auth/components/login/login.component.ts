@@ -24,7 +24,7 @@ export class LoginComponent {
 
   ngOnInit() {
     if (this.authService.isLoggedIn) {
-      this.router.navigate(['/main']);
+      this.router.navigate(['/']);
     } else {
       this.loginForm = this.formBuilder.group({
         email: ['', Validators.required],
@@ -38,7 +38,7 @@ export class LoginComponent {
       next: (res: any) => {
         localStorage.setItem('token', res.token);
         this.authService.currentUser = res;
-        this.router.navigate(['/main']);
+        this.router.navigate(['/']);
       },
       error: (err) => {
         this.requestError = err.error;

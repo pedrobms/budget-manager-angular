@@ -30,7 +30,7 @@ export class UserDetailsComponent {
     this.userService.updateUser(this.currentUser).subscribe({
       next: () => {
         this.toastService.showSuccess('Usuário atualizado com sucesso!');
-        this.router.navigate(['/main']);
+        this.router.navigate(['/']);
       },
       error: (err) => {
         this.toastService.showError(err.error);

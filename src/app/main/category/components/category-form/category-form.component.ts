@@ -31,7 +31,7 @@ export class CategoryFormComponent {
     this.categoryService.addCategory(this.categoryForm.value).subscribe({
       next: () => {
         this.toastService.showSuccess('Categoria criada com sucesso!');
-        this.router.navigate(['/main/category']);
+        this.router.navigate(['/category']);
       },
       error: (err) => {
         this.toastService.showError(err.error);

@@ -43,7 +43,7 @@ export class CategoryDetailsComponent {
     this.categoryService.updateCategory(this.category).subscribe({
       next: () => {
         this.toastService.showSuccess('Categoria editada com sucesso!');
-        this.router.navigate(['/main/category']);
+        this.router.navigate(['/category']);
       },
       error: (err) => {
         this.toastService.showError(err.error);
